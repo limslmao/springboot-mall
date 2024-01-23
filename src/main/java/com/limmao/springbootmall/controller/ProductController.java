@@ -1,6 +1,7 @@
 package com.limmao.springbootmall.controller;
 
 import com.limmao.springbootmall.constant.ProductCategory;
+import com.limmao.springbootmall.dto.ProductQueryParams;
 import com.limmao.springbootmall.dto.ProductRequest;
 import com.limmao.springbootmall.model.Product;
 import com.limmao.springbootmall.service.ProductService;
@@ -24,7 +25,11 @@ public class ProductController {
             @RequestParam(required = false) ProductCategory category,
             @RequestParam(required = false) String search
     ) {
-        List<Product> productList = productService.getProducts(category, search);
+        ProductQueryParams productQueryParams = new ProductQueryParams();
+        productQueryParams.setCategory(category);
+        productQueryParams.setSearch(search);
+
+        List<Product> productList = productService.getProducts(productQueryParams);
 
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }

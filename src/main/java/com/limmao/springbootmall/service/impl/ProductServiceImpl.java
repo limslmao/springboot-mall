@@ -1,7 +1,7 @@
 package com.limmao.springbootmall.service.impl;
 
-import com.limmao.springbootmall.constant.ProductCategory;
 import com.limmao.springbootmall.dao.ProductDao;
+import com.limmao.springbootmall.dto.ProductQueryParams;
 import com.limmao.springbootmall.dto.ProductRequest;
 import com.limmao.springbootmall.model.Product;
 import com.limmao.springbootmall.service.ProductService;
@@ -17,8 +17,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Override
-    public List<Product> getProducts(ProductCategory category, String search) {
-        return productDao.getProducts(category, search);
+    public List<Product> getProducts(ProductQueryParams productQueryParams) {
+        return productDao.getProducts(productQueryParams);
     }
 
     @Override
