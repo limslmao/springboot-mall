@@ -80,7 +80,6 @@ public class ProductController {
         Product product = productService.getProductById(productId);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(product);
-
     }
 
     @PutMapping("/products/{productId}")
