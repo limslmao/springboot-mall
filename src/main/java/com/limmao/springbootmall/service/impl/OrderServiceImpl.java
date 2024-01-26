@@ -4,6 +4,7 @@ import com.limmao.springbootmall.dao.OrderDao;
 import com.limmao.springbootmall.dao.ProductDao;
 import com.limmao.springbootmall.dto.BuyItem;
 import com.limmao.springbootmall.dto.CreateOrderRequest;
+import com.limmao.springbootmall.model.Order;
 import com.limmao.springbootmall.model.OrderItem;
 import com.limmao.springbootmall.model.Product;
 import com.limmao.springbootmall.service.OrderService;
@@ -22,6 +23,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private ProductDao productDao;
+
+    @Override
+    public Order getOrderById(Integer orderId) {
+        Order order = orderDao.getOrderById(orderId);
+
+        List<OrderItem> orderItemList = orderDao.getOrderItemsByOrderId(orderId);
+
+        order.setOrderItemList(orderItemList);
+        
+        return order;
+    }
 
     @Transactional
     @Override
